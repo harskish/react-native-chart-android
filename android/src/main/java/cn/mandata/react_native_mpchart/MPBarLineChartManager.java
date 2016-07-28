@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.DataSet;
+import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.XAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.ViewPortHandler;
@@ -250,6 +251,13 @@ public class MPBarLineChartManager extends SimpleViewManager<BarLineChartBase> {
 
         if(v.hasKey("valueFormatter"))
             axis.setValueFormatter(new CustomYAxisValueFormatter(v.getString("valueFormatter")) );
+
+        if (v.hasKey("useLargeValueFormatter")) {
+            boolean enabled = v.getBoolean("useLargeValueFormatter");
+            if(enabled) {
+                axis.setValueFormatter(new LargeValueFormatter());
+            }
+        }
     }
 
     //{EnableLeft:true,EnableRight:true}
